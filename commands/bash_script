@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Parse args
+for i in "$@"; do
+	case $i in
+		-v|--verbose)
+			VERBOSE=1
+			shift
+		;;
+		-f|--file)
+			shift
+			FILENAME="$1"
+			shift
+		;;
+	esac
+done
+
+# Just make sure the args work
+# https://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash
+if [ -n "${VERBOSE+x}" ]; then
+	echo "Printing verbose output..."
+fi
+
+if [ -n "${FILENAME+x}" ]; then
+	cat "$FILENAME"
+else
+	echo "No filename supplied." >&2
+	exit 1
+fi
+
+echo "Done."

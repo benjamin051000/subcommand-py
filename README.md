@@ -6,6 +6,8 @@ Testing various subcommand patterns.
 ./
 ├── commands/
 │   ├── __init__.py
+│   ├── bash_script
+│   ├── bash_script.py
 │   ├── clone.py
 │   └── echo.py
 └── main.py
