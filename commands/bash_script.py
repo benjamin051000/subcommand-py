@@ -5,7 +5,7 @@ from pathlib import Path
 
 def setup(subparsers: argparse._SubParsersAction):
     # NOTE: This command parses the args in the subprocess. Do nothing here
-    cmd = subparsers.add_parser("bash")
+    cmd = subparsers.add_parser("bash", help="run the bash script")
     cmd.set_defaults(run=bash)
     
 
