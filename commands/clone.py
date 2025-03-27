@@ -7,7 +7,6 @@ def setup(subparsers: argparse._SubParsersAction):
 
 def clone(args):
     """Clones a git repo"""
-    print(args)
     print(f"cloning from {args.url}...")
     print("done.")
 
