@@ -1,5 +1,6 @@
 import argparse
-import commands
+from glob import glob
+from importlib import import_module
 
 
 def main():
@@ -7,9 +8,10 @@ def main():
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(help="commands")
 
-    # Get all the subcommands and set their subparsers up.
-    for module_name in commands.command_names:
-        module = getattr(commands, module_name)
+    for filename in glob("commands/*.py"):
+        module_name = filename.replace('/', '.').rstrip(".py")
+        module = import_module(module_name)
+        # The rule is that each module has a method called setup.
         module.setup(subparsers)
 
     args = parser.parse_args()
