@@ -1,6 +1,12 @@
 # subcommand-pattern
 Testing various subcommand patterns.
 
+> [!TIP]
+> Each structure has its own git tag.
+> Open them to see the differences:
+> - [argparse](https://github.com/benjamin051000/subcommand-py/tree/argparse-1.0)
+> - [click](https://github.com/benjamin051000/subcommand-py/tree/click-1.0)
+
 # Structure
 ```
 ./
