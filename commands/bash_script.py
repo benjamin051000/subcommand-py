@@ -12,6 +12,5 @@ def setup(subparsers: argparse._SubParsersAction):
 def bash(_):
     path_to_exe = Path("./commands/bash_script")
     temp = [path_to_exe] + sys.argv[1:]
-    breakpoint()
     subprocess.run(temp)
 
