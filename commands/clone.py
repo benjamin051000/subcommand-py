@@ -1,12 +1,10 @@
-import argparse
+import click
 
-def setup(subparsers: argparse._SubParsersAction):
-    cmd = subparsers.add_parser("clone", help="clone a repository.")
-    cmd.add_argument("url", help="HTTPS URL of the repository.")
-    cmd.set_defaults(run=clone)
 
-def clone(args):
-    """Clones a git repo"""
-    print(f"cloning from {args.url}...")
+@click.command()
+@click.argument("url")
+def clone(url: str):
+    """Clones a git repo from URL (not actually)."""
+    print(url)
+    print(f"cloning from {url}...")
     print("done.")
-

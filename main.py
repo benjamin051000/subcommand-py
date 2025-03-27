@@ -1,26 +1,24 @@
-import argparse
+import click
 from glob import glob
 from importlib import import_module
 
 
+@click.group()
+def cli():
+    pass
+
+
 def main():
-    # Create the top-level parser
-    parser = argparse.ArgumentParser()
-    subparsers = parser.add_subparsers(help="commands")
-
     for filename in glob("commands/*.py"):
-        module_name = filename.replace('/', '.').rstrip(".py")
+        module_name = filename.replace("/", ".").rstrip(".py")
         module = import_module(module_name)
-        # The rule is that each module has a method called setup.
-        module.setup(subparsers)
 
-    args = parser.parse_args()
+        # The rule is that each module has a click.command with the same name.
+        _, command_name = module_name.split(".")
+        command = getattr(module, command_name)
+        cli.add_command(command)
 
-    # Run the relevant command with its subparser.
-    try:
-        args.run(args)
-    except AttributeError:
-        parser.print_help()
+    cli()
 
 
 if __name__ == "__main__":
